@@ -13,7 +13,7 @@ const ReplyBox = ({ user, currentUser, parentId, handleAddReply, onClose }) => {
           id: Date.now(),
           content: text,
           createdAt: Date.now(),
-          score: 2,
+          score: 0,
           replyingTo: user.username,
           user: currentUser,
         };

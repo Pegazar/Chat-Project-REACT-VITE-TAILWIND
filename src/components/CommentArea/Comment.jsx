@@ -6,6 +6,7 @@ import CommentTime from "./CommentTime";
 import CommentScore from "./CommentScore";
 import DeleteIcon from "../../assets/icon-delete.svg";
 import EditIcon from "../../assets/icon-edit.svg";
+import DeleteReply from "../ReplyArea/DeleteReply";
 
 const Comment = ({
   comment,
@@ -18,8 +19,8 @@ const Comment = ({
   const { score, user, createdAt, content, id, replies } = comment;
   const [showReplyBox, setShowReplyBox] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
-  const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [editedContent, setEditedContent] = useState(content);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
   const isReply = !!comment.replyingTo;
   const isCurrentUser = user.username === currentUser.username;
 
@@ -33,12 +34,12 @@ const Comment = ({
     setShowDeleteModal(true);
   };
 
-  const confirmCancel = () => {
+  const handleConfirmDelete = () => {
+    handleDeleteComment(id);
     setShowDeleteModal(false);
   };
 
-  const confirmDelete = () => {
-    handleDeleteComment(id);
+  const handleCancelDelete = () => {
     setShowDeleteModal(false);
   };
 
@@ -119,37 +120,11 @@ const Comment = ({
             <p className="text-[#85888C] text-md">{content}</p>
           )}
 
-          {showDeleteModal && (
-            <div className="fixed inset-0 z-50">
-              <div className="absolute inset-0 bg-black/50"></div>
-
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="flex flex-col items-start max-w-sm bg-white p-8 rounded-xl shadow-sm">
-                  <h3 className="text-[#33404B] text-[22px] mb-3 font-semibold">
-                    Delete comment
-                  </h3>
-                  <p className="text-gray-500">
-                    Are you sure you want to delete this comment? This will
-                    remove the comment, and can't be undone
-                  </p>
-                  <div className="flex items-center justify-center w-full gap-3 mt-5">
-                    <button
-                      onClick={confirmCancel}
-                      className="uppercase bg-[#68717E] rounded-md text-white font-normal py-2 px-8 cursor-pointer"
-                    >
-                      No, Cancel
-                    </button>
-                    <button
-                      onClick={confirmDelete}
-                      className="uppercase bg-[#ED6268] rounded-md text-white font-normal py-2 px-8 cursor-pointer"
-                    >
-                      Yes, Delete
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          )}
+          <DeleteReply
+            showDeleteModal={showDeleteModal}
+            onCancel={handleCancelDelete}
+            onDelete={handleConfirmDelete}
+          />
         </div>
       </div>
 

@@ -1,24 +1,23 @@
 import React, { useEffect, useState } from "react";
 import { timeAgo } from "../utils/timeAgo";
 
-const CommentTime = ({ createdAt, isReply }) => {
-  const isTimestamp = typeof createdAt === "number";
+const CommentTime = ({ createdAt }) => {
   const [relativeTime, setRelativeTime] = useState(() => {
-    if (isReply && isTimestamp) {
+    if (typeof createdAt === 'number') {
       return timeAgo(new Date(createdAt));
     }
     return createdAt;
   });
 
   useEffect(() => {
-    if (!(isReply && isTimestamp)) return;
+    if (typeof createdAt !== 'number') return;
 
     const interval = setInterval(() => {
       setRelativeTime(timeAgo(new Date(createdAt)));
-    }, 30000);
+    }, 60000);
 
     return () => clearInterval(interval);
-  }, [createdAt, isReply, isTimestamp]);
+  }, [createdAt]);
 
   return (
     <span className="text-[#85888C]">
