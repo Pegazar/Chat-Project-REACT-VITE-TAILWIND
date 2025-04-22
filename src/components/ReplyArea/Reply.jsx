@@ -1,6 +1,7 @@
 import React, { useState } from "react";
+import TextareaWithSubmit from "./TextAreaWihtSubmit";
 
-const Reply = ({ replyingTo, currentUser, onReply, parentId }) => {
+const Reply = ({ replyingTo, currentUser, onReply }) => {
   const [text, setText] = useState(`@${replyingTo} `);
 
   const handleSend = () => {
@@ -15,11 +16,10 @@ const Reply = ({ replyingTo, currentUser, onReply, parentId }) => {
       <img src={currentUser.image.webp} className="w-9 h-9" alt="user" />
       <div className="w-full">
         <div className="flex flex-col md:flex-row md:items-start md:gap-3 w-full">
-          <textarea
-            className="w-full px-4 py-2 rounded-lg outline-none resize-none border text-[#1a1b3a] border-[#5357B6] font-normal"
-            rows={3}
+          <TextareaWithSubmit
             value={text}
             onChange={(e) => setText(e.target.value)}
+            onSubmit={handleSend}
             placeholder={`Replying to @${replyingTo}`}
           />
           <div className="flex justify-end md:justify-start mt-3 md:mt-0">

@@ -1,10 +1,13 @@
 import React, { useState } from "react";
+import TextareaWithSubmit from "../ReplyArea/TextAreaWihtSubmit";
 
 const CommentForm = ({ currentUser, handleAddComment }) => {
   const [value, setValue] = useState("");
 
   const handleSubmit = (e) => {
-    e.preventDefault();
+    if (e && e.preventDefault) {
+      e.preventDefault();
+    }
     if (!value.trim()) return;
 
     const newComment = {
@@ -26,12 +29,12 @@ const CommentForm = ({ currentUser, handleAddComment }) => {
         <img src={currentUser.image.webp} className="w-9 h-9" alt="user" />
         <div className="w-full">
           <div className="flex flex-col md:flex-row md:items-start md:gap-3 w-full">
-            <textarea
-              className="w-full px-4 py-2 rounded-lg outline-none resize-none border text-[#1a1b3a] border-[#5357B6] font-normal"
-              rows={3}
+            <TextareaWithSubmit
               value={value}
               onChange={(e) => setValue(e.target.value)}
-              placeholder={`Add a comment...`}
+              onSubmit={handleSubmit}
+              placeholder="Add a comment..."
+              rows={3}
             />
             <div className="flex justify-end md:justify-start mt-3 md:mt-0">
               <button

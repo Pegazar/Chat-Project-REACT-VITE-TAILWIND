@@ -1,9 +1,7 @@
 import React, { useState } from "react";
+import TextareaWithSubmit from "./TextAreaWihtSubmit";
 
-const EditReply = ({
-  initialContent,
-  onSave,
-}) => {
+const EditReply = ({ initialContent, onSave }) => {
   const [editedContent, setEditedContent] = useState(initialContent);
 
   const handleSave = () => {
@@ -12,11 +10,12 @@ const EditReply = ({
 
   return (
     <div className="mt-2">
-      <textarea
-        className="w-full px-4 py-2 rounded-lg outline-none resize-none border text-[#1a1b3a] border-[#5357B6] font-normal"
+      <TextareaWithSubmit
         value={editedContent}
-        rows={4}
         onChange={(e) => setEditedContent(e.target.value)}
+        onSubmit={handleSave}
+        rows={4}
+        autoFocus={true}
       />
       <div className="flex justify-end mt-2">
         <button
