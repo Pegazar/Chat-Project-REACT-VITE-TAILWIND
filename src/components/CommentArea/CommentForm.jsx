@@ -8,6 +8,7 @@ const CommentForm = ({ currentUser, handleAddComment }) => {
     if (e && e.preventDefault) {
       e.preventDefault();
     }
+
     if (!value.trim()) return;
 
     const newComment = {

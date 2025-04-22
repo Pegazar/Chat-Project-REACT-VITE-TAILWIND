@@ -102,7 +102,9 @@ const Comment = ({
               }}
             />
           ) : (
-            <p className="text-[#85888C] text-md mt-3">{content}</p>
+            <p className="text-[#85888C] text-md mt-3 break-all whitespace-pre-wrap overflow-auto">
+              {content}
+            </p>
           )}
 
           <DeleteReply

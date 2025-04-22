@@ -1,6 +1,7 @@
 @import "tailwindcss";
 
 body {
-    @apply bg-gray-50 font-sans;
-    font-family: "Poppins", sans-serif;
+  @apply bg-gray-50 font-sans;
+  font-family: "Poppins", sans-serif;
 }
+

@@ -44,7 +44,7 @@ const CommentSection = () => {
 
 
   return (
-    <div className="flex items-start justify-center h-screen relative">
+    <div className="flex items-start justify-center h-full relative">
       <CommentList
         comments={comments.comments}
         currentUser={currentUser}
