@@ -9,7 +9,7 @@ const EditReply = ({ initialContent, onSave }) => {
   };
 
   return (
-    <div className="mt-2">
+    <div className="mt-2 text-sm md:text-[16px]">
       <TextareaWithSubmit
         value={editedContent}
         onChange={(e) => setEditedContent(e.target.value)}

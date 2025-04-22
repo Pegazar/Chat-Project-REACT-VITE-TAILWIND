@@ -12,7 +12,7 @@ const Reply = ({ replyingTo, currentUser, onReply }) => {
   };
 
   return (
-    <div className="flex items-start gap-4 bg-white p-6 rounded-xl shadow-sm m-4 md:m-0">
+    <div className="flex items-start gap-4 bg-white p-6 rounded-xl shadow-sm mt-4 mx-4 md:mx-0">
       <img src={currentUser.image.webp} className="w-9 h-9" alt="user" />
       <div className="w-full">
         <div className="flex flex-col md:flex-row md:items-start md:gap-3 w-full">

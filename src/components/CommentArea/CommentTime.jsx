@@ -20,7 +20,7 @@ const CommentTime = ({ createdAt }) => {
   }, [createdAt]);
 
   return (
-    <span className="text-[#85888C]">
+    <span className="text-[#85888C] text-sm md:text-[16px]">
       {relativeTime}
     </span>
   );

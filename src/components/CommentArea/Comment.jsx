@@ -39,7 +39,7 @@ const Comment = ({
 
   return (
     <>
-      <div className="bg-white p-6 m-4 md:m-0 rounded-xl shadow-sm flex flex-col-reverse md:flex-row gap-4 max-w-3xl relative">
+      <div className="bg-white p-6 rounded-xl shadow-sm flex flex-col-reverse md:flex-row gap-4 max-w-3xl relative mt-4 md:mt-0">
         <CommentScore
           initialScore={score}
           onScoreChange={(newScore) => handleScoreChange(id, newScore)}
@@ -52,7 +52,7 @@ const Comment = ({
                 src={user.image.webp}
                 alt={user.username}
               />
-              <span className="font-semibold">{user.username}</span>
+              <span className="font-semibold text-sm md:text-[16px]">{user.username}</span>
               {isCurrentUser && (
                 <span className="bg-[#5357B6] text-white text-xs px-2 py-1 rounded">
                   you
@@ -125,7 +125,7 @@ const Comment = ({
         />
       )}
 
-      <div className="max-w-3xl">
+      <div className="max-w-3xl mt-0 md:mt-4">
         <Replies
           replies={replies}
           currentUser={currentUser}

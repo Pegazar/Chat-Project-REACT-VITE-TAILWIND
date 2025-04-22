@@ -12,7 +12,7 @@ const CommentList = ({
   handleAddComment,
 }) => {
   return (
-    <div className="flex flex-col gap-0 my-6 md:gap-3 md:my-10">
+    <div className="flex flex-col gap-0 my-6 md:my-10 mx-4 md:mx-0">
       {comments.map((comment) => (
         <Comment
           key={comment.id}
