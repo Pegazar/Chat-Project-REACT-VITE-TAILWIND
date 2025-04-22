@@ -49,7 +49,7 @@ const Comment = ({
             <div className="flex items-center justify-start md:justify-center gap-4">
               <img
                 className="w-8 h-8"
-                src={user.image.png}
+                src={user.image.webp}
                 alt={user.username}
               />
               <span className="font-semibold">{user.username}</span>
