@@ -16,7 +16,7 @@ const CommentScore = ({ initialScore, onScoreChange }) => {
   };
 
   return (
-    <div className="flex md:flex-col items-center justify-center bg-gray-100 rounded-lg px-2 py-1 md:px-2 text-sm font-semibold w-[40px] text-center">
+    <div className="flex flex-row md:flex-col items-center justify-between bg-gray-100 rounded-lg px-4 py-2 md:px-2 md:py-1 text-sm font-semibold text-center flex-shrink-0 self-start w-[95px] md:w-[45px]">
       <button
         onClick={increment}
         className="text-[#C0C0E4] text-xl hover:text-[#5D5AA9] font-bold duration-200 cursor-pointer"

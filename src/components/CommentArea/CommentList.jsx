@@ -2,9 +2,17 @@ import React from "react";
 import Comment from "./Comment";
 import CommentForm from "./CommentForm";
 
-const CommentList = ({ comments, currentUser, handleAddReply, handleScoreChange, handleDeleteComment, handleEditComment, handleAddComment }) => {
+const CommentList = ({
+  comments,
+  currentUser,
+  handleAddReply,
+  handleScoreChange,
+  handleDeleteComment,
+  handleEditComment,
+  handleAddComment,
+}) => {
   return (
-    <div className="flex flex-col gap-3 mt-10">
+    <div className="flex flex-col gap-0 mt-6 md:gap-3 md:mt-10">
       {comments.map((comment) => (
         <Comment
           key={comment.id}
@@ -16,12 +24,12 @@ const CommentList = ({ comments, currentUser, handleAddReply, handleScoreChange,
           handleEditComment={handleEditComment}
         />
       ))}
-      <CommentForm 
+      <CommentForm
         currentUser={currentUser}
-        handleAddComment={handleAddComment}        
+        handleAddComment={handleAddComment}
       />
     </div>
   );
 };
 
-export default CommentList
+export default CommentList;

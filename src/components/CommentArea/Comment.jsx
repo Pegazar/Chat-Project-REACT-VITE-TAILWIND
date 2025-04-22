@@ -7,6 +7,7 @@ import CommentScore from "./CommentScore";
 import DeleteIcon from "../../assets/icon-delete.svg";
 import EditIcon from "../../assets/icon-edit.svg";
 import DeleteReply from "../ReplyArea/DeleteReply";
+import EditReply from "../ReplyArea/EditReply";
 
 const Comment = ({
   comment,
@@ -19,16 +20,9 @@ const Comment = ({
   const { score, user, createdAt, content, id, replies } = comment;
   const [showReplyBox, setShowReplyBox] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
-  const [editedContent, setEditedContent] = useState(content);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const isReply = !!comment.replyingTo;
   const isCurrentUser = user.username === currentUser.username;
-
-  const handleSaveEdit = () => {
-    handleEditComment(id, editedContent);
-    setIsEditing(false);
-    console.log("Edited content:", editedContent);
-  };
 
   const handleDeleteClick = () => {
     setShowDeleteModal(true);
@@ -45,14 +39,14 @@ const Comment = ({
 
   return (
     <>
-      <div className="bg-white p-4 rounded-xl shadow-sm flex flex-col md:flex-row md:items-start gap-4 max-w-3xl">
+      <div className="bg-white p-6 m-4 md:m-0 rounded-xl shadow-sm flex flex-col-reverse md:flex-row gap-4 max-w-3xl relative">
         <CommentScore
           initialScore={score}
           onScoreChange={(newScore) => handleScoreChange(id, newScore)}
         />
         <div className="w-full">
-          <div className="flex justify-between">
-            <div className="flex items-center justify-center gap-4 mb-3">
+          <div className="flex justify-between items-center">
+            <div className="flex items-center justify-start md:justify-center gap-4">
               <img
                 className="w-8 h-8"
                 src={user.image.png}
@@ -67,21 +61,21 @@ const Comment = ({
               <CommentTime createdAt={createdAt} isReply={isReply} />
             </div>
 
-            <div className="flex items-center gap-4">
+            <div className="flex items-center justify-center gap-4 absolute bottom-8 right-6 md:bottom-0 md:right-0 md:relative">
               {isCurrentUser ? (
                 <>
                   <button
                     onClick={handleDeleteClick}
                     className="flex items-center gap-2 cursor-pointer group text-[#ED6368] hover:text-[#FFB8BB] duration-200"
                   >
-                    <img src={DeleteIcon} alt="" />
+                    <img src={DeleteIcon} alt="Delete" />
                     <span className="font-semibold">Delete</span>
                   </button>
                   <button
                     onClick={() => setIsEditing(!isEditing)}
                     className="flex items-center gap-2 cursor-pointer group text-[#5357B6] hover:text-[#C9C9E6] duration-200"
                   >
-                    <img src={EditIcon} alt="" />
+                    <img src={EditIcon} alt="Edit" />
                     <span className="font-semibold">Edit</span>
                   </button>
                 </>
@@ -100,24 +94,15 @@ const Comment = ({
           </div>
 
           {isEditing ? (
-            <div className="mt-2">
-              <textarea
-                className="w-full px-4 py-2 rounded-lg outline-none resize-none border text-[#1a1b3a] border-[#5357B6] font-normal"
-                value={editedContent}
-                rows={3}
-                onChange={(e) => setEditedContent(e.target.value)}
-              />
-              <div className="flex justify-end mt-2">
-                <button
-                  className="bg-[#5357B6] hover:bg-[#C9C9E6] text-white font-semibold px-6 py-2 rounded-lg uppercase cursor-pointer duration-300"
-                  onClick={handleSaveEdit}
-                >
-                  Update
-                </button>
-              </div>
-            </div>
+            <EditReply
+              initialContent={content}
+              onSave={(newContent) => {
+                handleEditComment(id, newContent);
+                setIsEditing(false);
+              }}
+            />
           ) : (
-            <p className="text-[#85888C] text-md">{content}</p>
+            <p className="text-[#85888C] text-md mt-3">{content}</p>
           )}
 
           <DeleteReply

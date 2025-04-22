@@ -11,7 +11,6 @@ const CommentSection = () => {
     const saved = localStorage.getItem("comments");
     return saved ? JSON.parse(saved) : commentsData;
   });
-
   const [currentUser] = useState(commentsData.currentUser);
 
   const handleDeleteComment = (commentId) => {
